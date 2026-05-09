@@ -1,0 +1,16 @@
+# OSファイル
+.DS_Store
+Thumbs.db
+
+# エディタ設定
+.vscode/
+.idea/
+
+# 一時ファイル
+*.log
+*.tmp
+
+# Node.js等（今回不要だけど安全用）
+node_modules/
+dist/
+build/
