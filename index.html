@@ -3,124 +3,124 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-<meta name="theme-color" content="#ffb6f9">
-<title>題目カウンター DayDreamプラス DX+ 完全版</title>
+<meta name="theme-color" content="#7c4dff">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>題目カウンター DayDreamプラス DX+ らくらくホン向け見やすい日本語版</title>
 
 <style>
 :root{
-  --bg1:#ffb6f9;
-  --bg2:#b5d7ff;
-  --bg3:#ffe59e;
-  --card:#ffffff;
-  --text:#222;
-  --muted:#666;
-  --touch-min:48px;
-  --radius:16px;
-  --shadow:0 6px 14px rgba(0,0,0,0.15);
-  --page-max:880px;
-  --base-font:16px;
-  --btn-font:15px;
-  --card-pad:14px;
-  --header-font:18px;
-  --input-font:16px;
+  --font-base:18px;
+  --font-large:22px;
+  --button-font:18px;
+  --button-padding-y:14px;
+  --button-padding-x:16px;
+  --card-radius:18px;
+  --card-margin:14px;
+  --card-padding:18px;
+  --line-height:1.85;
+  --header-font:22px;
+  --choice-font:18px;
+  --input-font:18px;
 }
 
-*{box-sizing:border-box;}
-html{
-  -webkit-text-size-adjust:100%;
-  text-size-adjust:100%;
-}
 body{
   margin:0;
-  font-family:sans-serif;
-  color:var(--text);
-  background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+  font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+  font-size:var(--font-base);
+  line-height:var(--line-height);
+  background:linear-gradient(135deg,#ffb6f9,#b5d7ff,#ffe59e);
   transition:0.3s;
-  font-size:var(--base-font);
-  overflow-x:hidden;
-  padding-bottom:calc(env(safe-area-inset-bottom, 0px) + 12px);
+  color:#222;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+  padding-bottom:24px;
 }
 
-.appWrap{
-  width:100%;
-  max-width:var(--page-max);
-  margin:0 auto;
-  padding:0 8px 12px;
+body.easyMode{
+  --font-base:28px;
+  --font-large:34px;
+  --button-font:26px;
+  --button-padding-y:24px;
+  --button-padding-x:22px;
+  --card-radius:24px;
+  --card-margin:18px;
+  --card-padding:24px;
+  --line-height:2.0;
+  --header-font:30px;
+  --choice-font:27px;
+  --input-font:27px;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
 }
 
 .header{
   position:sticky;
   top:0;
-  padding:12px;
+  padding:14px 12px;
   text-align:center;
   font-weight:bold;
   font-size:var(--header-font);
   background:rgba(255,255,255,0.45);
   backdrop-filter:blur(8px);
-  z-index:10;
-  border-bottom:1px solid rgba(255,255,255,0.45);
-}
-
-.headerTop{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
-.modeBadge{
-  display:inline-block;
-  font-size:12px;
-  background:#fff;
-  color:#444;
-  border-radius:999px;
-  padding:4px 10px;
-  box-shadow:0 2px 6px rgba(0,0,0,0.08);
+  z-index:20;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
 
 .card{
-  background:var(--card);
-  margin:12px 0;
-  padding:var(--card-pad);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
+  background:#fff;
+  margin:var(--card-margin);
+  padding:var(--card-padding);
+  border-radius:var(--card-radius);
+  box-shadow:0 6px 14px rgba(0,0,0,0.15);
+}
+
+.modeCard{
+  background:rgba(255,255,255,0.96);
+}
+
+.modeRow,
+.actionGrid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+}
+
+.actionGrid.singleColumn{
+  grid-template-columns:1fr;
 }
 
 button{
-  min-height:var(--touch-min);
-  padding:12px 14px;
-  margin:4px;
+  min-height:58px;
+  padding:var(--button-padding-y) var(--button-padding-x);
+  margin:0;
   border:none;
   border-radius:12px;
   font-weight:bold;
   cursor:pointer;
-  font-size:var(--btn-font);
-  line-height:1.4;
+  font-size:var(--button-font);
+  width:100%;
   touch-action:manipulation;
 }
-button:active{transform:scale(0.98);}
-button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
-  outline:3px solid rgba(0,176,255,0.35);
-  outline-offset:2px;
+
+body.easyMode button{
+  min-height:86px;
+  border-radius:20px;
+  letter-spacing:0.04em;
 }
 
 .startBtn{background:#00c853;color:white;}
 .resetBtn{background:#ff7043;color:white;}
 .navBtn{background:#7c4dff;color:white;}
 .quizBtn{background:#00acc1;color:white;}
-.softBtn{background:#455a64;color:white;}
-
-.btnGrid{
-  display:grid;
-  grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:8px;
-}
-.btnGrid button{width:100%; margin:0;}
+.modeBtn{background:#ece7ff;color:#4b2aad;border:2px solid transparent;}
+.modeBtn.active{background:#7c4dff;color:#fff;border-color:#5c31d6;}
 
 input,textarea,select{
   width:100%;
-  min-height:var(--touch-min);
   padding:12px;
   margin-top:8px;
   border-radius:12px;
@@ -129,17 +129,26 @@ input,textarea,select{
   background:#fff;
 }
 
-label.blockLabel{
+body.easyMode input,
+body.easyMode textarea,
+body.easyMode select{
+  min-height:78px;
+  padding:18px;
+}
+
+label{
   display:block;
-  margin-top:10px;
+  margin-top:12px;
+  margin-bottom:4px;
   font-weight:bold;
 }
 
 .bar{
-  height:18px;
+  height:22px;
   background:#ddd;
   border-radius:999px;
   overflow:hidden;
+  margin-top:8px;
 }
 
 .fill{
@@ -150,11 +159,14 @@ label.blockLabel{
 
 .ach{
   margin-top:8px;
-  padding:10px;
+  padding:12px;
   background:#fff3cd;
   border-radius:12px;
-  line-height:1.7;
-  word-break:break-word;
+  line-height:var(--line-height);
+}
+
+.infoPanel{
+  background:#f7f7ff;
 }
 
 .space{
@@ -202,20 +214,39 @@ label.blockLabel{
 .quizItem{
   background:#f7fbff;
   border-radius:14px;
-  padding:12px;
-  margin-top:10px;
+  padding:14px;
+  margin-top:12px;
 }
 
 .quizQuestion{
   font-weight:bold;
-  margin-bottom:8px;
-  line-height:1.8;
+  margin-bottom:10px;
+  line-height:1.9;
+  font-size:var(--font-large);
 }
 
 .quizMeta{
+  font-size:14px;
+  color:#555;
+  margin-bottom:8px;
+}
+
+body.easyMode .quizMeta,
+body.easyMode .smallNote,
+body.easyMode .quizOriginal,
+body.easyMode .originalToggle{
+  font-size:20px;
+}
+
+.quizOriginal{
   font-size:12px;
-  color:var(--muted);
-  margin-bottom:6px;
+  color:#666;
+  margin-top:8px;
+  line-height:1.6;
+  word-break:break-word;
+  background:#fafafa;
+  padding:10px;
+  border-radius:10px;
 }
 
 .choiceBtn{
@@ -224,36 +255,23 @@ label.blockLabel{
   text-align:left;
   background:#eef7ff;
   color:#333;
-  margin-top:8px;
+  margin-top:10px;
   border:2px solid transparent;
-  border-radius:12px;
-  padding:12px;
+  border-radius:14px;
+  padding:14px;
   font-weight:bold;
+  font-size:var(--choice-font);
 }
 
-.choiceBtn:hover{
-  background:#dff1ff;
-}
-
-.choiceBtn.selected{
-  border-color:#00acc1;
-  background:#b2ebf2;
-}
-
-.choiceBtn.correct{
-  background:#c8e6c9;
-  border-color:#2e7d32;
-}
-
-.choiceBtn.wrong{
-  background:#ffcdd2;
-  border-color:#c62828;
-}
+.choiceBtn:hover{background:#dff1ff;}
+.choiceBtn.selected{border-color:#00acc1;background:#b2ebf2;}
+.choiceBtn.correct{background:#c8e6c9;border-color:#2e7d32;}
+.choiceBtn.wrong{background:#ffcdd2;border-color:#c62828;}
 
 .quizResult{
   margin-top:12px;
-  padding:12px;
-  border-radius:12px;
+  padding:14px;
+  border-radius:14px;
   background:#e8f5e9;
   font-weight:bold;
   line-height:1.8;
@@ -261,8 +279,8 @@ label.blockLabel{
 
 .loadingBox{
   margin-top:10px;
-  padding:12px;
-  border-radius:12px;
+  padding:14px;
+  border-radius:14px;
   background:#e3f2fd;
   font-weight:bold;
 }
@@ -270,111 +288,66 @@ label.blockLabel{
 .smallNote{
   font-size:12px;
   color:#555;
-  margin-top:6px;
-  line-height:1.6;
+  margin-top:8px;
 }
 
-.infoRow{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.bigValue{
-  font-size:1.25em;
-  font-weight:bold;
-}
-
-.compactHide{display:block;}
-
-.modeSwitch{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-.modeSwitch button{
-  flex:1 1 140px;
-  margin:0;
-}
-.modeSwitch button.active{
-  box-shadow:inset 0 0 0 3px rgba(255,255,255,0.65);
-}
-
-.footerNote{
-  text-align:center;
+.translatedBadge,
+.jaBadge{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:999px;
+  background:#e1f5fe;
+  color:#0277bd;
   font-size:12px;
-  color:#444;
-  padding:4px 0 8px;
+  font-weight:bold;
+  margin-right:6px;
 }
 
-body.simple-mode{
-  --base-font:24px;
-  --btn-font:24px;
-  --card-pad:22px;
-  --header-font:28px;
-  --input-font:24px;
-  --touch-min:80px;
-  --radius:20px;
-  background:linear-gradient(180deg,#fff6fb,#eef7ff,#fffbe8);
-  letter-spacing:0.02em;
-}
-body.simple-mode .card{
-  box-shadow:0 8px 18px rgba(0,0,0,0.12);
-  border:2px solid #e3e3e3;
-}
-body.simple-mode .smallNote,
-body.simple-mode .quizMeta{
-  font-size:18px;
-  line-height:1.8;
-}
-body.simple-mode button{
-  min-height:84px;
-  padding:18px 18px;
-  border-radius:16px;
-}
-body.simple-mode input,
-body.simple-mode textarea,
-body.simple-mode select{
-  min-height:76px;
-  padding:16px;
-  border-width:2px;
-}
-body.simple-mode .ach,
-body.simple-mode .quizResult,
-body.simple-mode .loadingBox,
-body.simple-mode .quizItem{
-  padding:16px;
-  line-height:1.9;
-}
-body.simple-mode .choiceBtn{
-  min-height:82px;
-  font-size:24px;
-  padding:16px;
-}
-body.simple-mode .bigValue{
-  font-size:1.45em;
-}
-body.simple-mode .modeBadge{
-  font-size:16px;
-  padding:8px 14px;
-}
-body.simple-mode .footerNote{
-  font-size:16px;
+.originalToggle{
+  font-size:12px;
+  color:#1565c0;
+  cursor:pointer;
+  text-decoration:underline;
+  margin-top:8px;
+  display:inline-block;
 }
 
-@media (max-width: 640px){
-  .appWrap{padding:0 10px 14px;}
-  .infoRow{grid-template-columns:1fr;}
+.hidden{display:none !important;}
+
+body.easyMode .modeRow,
+body.easyMode .actionGrid{
+  grid-template-columns:1fr;
+  gap:16px;
 }
 
-@media (max-width: 520px){
-  .btnGrid{grid-template-columns:1fr;}
-  .header{padding-top:calc(env(safe-area-inset-top, 0px) + 10px);}
+body.easyMode .quizItem{
+  padding:18px;
+  margin-top:16px;
 }
 
-@media (prefers-reduced-motion: reduce){
-  *{scroll-behavior:auto;}
-  .flash,.shake,.star{animation:none !important;}
+body.easyMode .ach,
+body.easyMode .quizResult,
+body.easyMode .loadingBox{
+  padding:18px;
+}
+
+body.easyMode .card{
+  box-shadow:0 8px 20px rgba(0,0,0,0.18);
+}
+
+@media (max-width:720px){
+  .modeRow,
+  .actionGrid{
+    grid-template-columns:1fr;
+  }
+
+  .header{
+    padding-top:calc(14px + env(safe-area-inset-top));
+  }
+
+  body{
+    padding-bottom:calc(24px + env(safe-area-inset-bottom));
+  }
 }
 </style>
 </head>
@@ -383,107 +356,114 @@ body.simple-mode .footerNote{
 <div id="space" class="space"></div>
 
 <div class="header">
-  <div class="headerTop">
-    <span>🌈 題目カウンター DayDreamプラス DX+</span>
-    <span id="modeBadge" class="modeBadge">標準表示</span>
+🌈 題目カウンター DayDreamプラス DX+<br>
+<span style="font-size:0.78em;">らくらくホン向け・大きい文字と押しやすいボタンの日本語版</span>
+</div>
+
+<div id="main">
+  <div class="card modeCard">
+    <h3 style="margin-top:0;">📱 表示モード</h3>
+    <div class="ach" style="background:#eef7ff;">らくらくホン向けは、文字を大きくしてボタンの間隔も広げています。</div>
+    <div class="modeRow">
+      <button id="modeAndroidBtn" class="modeBtn active" onclick="setDisplayMode('android')">標準表示</button>
+      <button id="modeEasyBtn" class="modeBtn" onclick="setDisplayMode('easy')">らくらく大文字表示</button>
+    </div>
+    <div class="smallNote">高齢の方でも見やすいように、最初から「らくらく大文字表示」を使う設定にしています。</div>
+  </div>
+
+  <div class="card infoPanel">
+    ⏰ <span id="clock"></span><br>
+    🚀 開始: <span id="startTime">未開始</span><br>
+    📅 日: <span id="daily">0</span><br>
+    🗓️ 月: <span id="monthly">0</span><br>
+    🏆 総: <span id="total">0</span><br>
+    🧠 クイズ最高点: <span id="homeBestScore">0</span> / 5
+  </div>
+
+  <div class="card">
+    <div class="actionGrid">
+      <button class="startBtn" onclick="toggle()" id="btn">▶開始</button>
+      <button class="navBtn" onclick="openPrayer()">🙏 御祈念</button>
+      <button class="resetBtn" onclick="resetDay()">日リセット</button>
+      <button class="quizBtn" onclick="openQuiz()">🧠 ジャンル別クイズ</button>
+      <button class="resetBtn" onclick="resetMonth()">月リセット</button>
+      <button class="resetBtn" onclick="resetTotal()">総リセット</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <label for="per">1分あたり</label>
+    <input id="per" type="number" value="60" inputmode="numeric">
+
+    <label for="goal">1日の目標</label>
+    <input id="goal" type="number" value="3000" inputmode="numeric">
+
+    <div style="margin-top:10px; font-weight:bold;">達成率 <span id="percent">0</span>%</div>
+    <div class="bar"><div class="fill" id="fill"></div></div>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-top:0;">🌈 段階演出</h3>
+    <div id="ach"></div>
   </div>
 </div>
 
-<div class="appWrap">
+<div id="prayerPage" style="display:none">
   <div class="card">
-    <h3 style="margin-top:0">📱 端末向け表示モード</h3>
-    <div class="modeSwitch">
-      <button id="modeStandardBtn" class="navBtn active" onclick="setDisplayMode('standard')">Android標準</button>
-      <button id="modeSimpleBtn" class="softBtn" onclick="setDisplayMode('simple')">らくらくホン大文字</button>
+    <h3 style="margin-top:0;">🙏 御祈念</h3>
+    <textarea id="prayer" maxlength="300" placeholder="御祈念内容を入力"></textarea>
+    <div class="actionGrid" style="margin-top:10px;">
+      <button class="startBtn" onclick="savePrayer()">保存</button>
+      <button class="navBtn" onclick="backHome()">戻る</button>
     </div>
+    <div id="prayerList"></div>
+  </div>
+</div>
+
+<div id="quizPage" style="display:none">
+  <div class="card">
+    <h3 style="margin-top:0;">🧠 ジャンル別・日本語クイズ</h3>
+    <p>ジャンルと難易度を選ぶと、その条件に合った日本語クイズを5問出題します。文字を大きくし、押しやすい配置に整えています。</p>
+
+    <div class="card infoPanel" style="margin:0 0 12px 0;">
+      <label for="quizGenre">ジャンル</label>
+      <select id="quizGenre" onchange="handleQuizFilterChange()">
+        <option value="all">全ジャンル</option>
+        <option value="スマホ基本">スマホ基本</option>
+        <option value="インターネット">インターネット</option>
+        <option value="セキュリティ">セキュリティ</option>
+        <option value="活用・AI">活用・AI</option>
+      </select>
+
+      <label for="quizDifficulty">難易度</label>
+      <select id="quizDifficulty" onchange="handleQuizFilterChange()">
+        <option value="all">すべて</option>
+        <option value="初級">初級</option>
+        <option value="中級">中級</option>
+        <option value="上級">上級</option>
+      </select>
+    </div>
+
+    <div id="quizSourceInfo" class="ach"></div>
+    <div id="quizScoreBoard" class="ach"></div>
+    <div id="quizDuplicateInfo" class="ach"></div>
+    <div id="quizList"></div>
+
+    <div class="actionGrid" style="margin-top:12px;">
+      <button class="startBtn" onclick="submitQuiz()">答え合わせ</button>
+      <button class="quizBtn" onclick="generateQuiz()">この条件で出題</button>
+      <button class="resetBtn" onclick="resetQuizScore()">スコアリセット</button>
+      <button class="resetBtn" onclick="resetQuizHistory()">重複履歴リセット</button>
+      <button class="navBtn" onclick="backHome()">戻る</button>
+    </div>
+
+    <div id="quizResult"></div>
     <div class="smallNote">
-      ※ 既存の機能はそのまま保持しつつ、ボタンサイズ・文字サイズ・余白を端末に合わせて最適化しています。らくらくホン大文字モードではさらに大きく表示されます。
+      ※ 日本語の問題だけを使います。<br>
+      ※ ジャンルと難易度を変えると、その条件に合わせて出題内容が変わります。<br>
+      ※ 同じ問題が続きにくいように履歴を保存しています。
     </div>
   </div>
-
-  <div id="main">
-
-    <div class="card">
-      ⏰ <span id="clock"></span><br>
-      🚀 開始: <span id="startTime">未開始</span><br>
-      <div class="infoRow" style="margin-top:10px">
-        <div>📅 日: <span id="daily" class="bigValue">0</span></div>
-        <div>🗓️ 月: <span id="monthly" class="bigValue">0</span></div>
-      </div>
-      <div style="margin-top:6px">🏆 総: <span id="total" class="bigValue">0</span></div>
-      <div style="margin-top:6px">🧠 クイズ最高点: <span id="homeBestScore">0</span> / 5</div>
-    </div>
-
-    <div class="card">
-      <div class="btnGrid">
-        <button class="startBtn" onclick="toggle()" id="btn">▶開始</button>
-        <button class="resetBtn" onclick="resetDay()">日リセット</button>
-        <button class="resetBtn" onclick="resetMonth()">月リセット</button>
-        <button class="resetBtn" onclick="resetTotal()">総リセット</button>
-        <button class="navBtn" onclick="openPrayer()">御祈念</button>
-        <button class="quizBtn" onclick="openQuiz()">🧠脳スッキリクイズ</button>
-      </div>
-    </div>
-
-    <div class="card">
-      <label class="blockLabel">1分あたり</label>
-      <input id="per" type="number" value="60" inputmode="numeric">
-
-      <label class="blockLabel">1日の目標</label>
-      <input id="goal" type="number" value="3000" inputmode="numeric">
-
-      <div style="margin-top:12px; font-weight:bold;">達成率 <span id="percent">0</span>%</div>
-      <div class="bar" aria-label="達成率バー"><div class="fill" id="fill"></div></div>
-    </div>
-
-    <div class="card">
-      <h3 style="margin-top:0">🌈 段階演出</h3>
-      <div id="ach"></div>
-    </div>
-
-  </div>
-
-  <div id="prayerPage" style="display:none">
-    <div class="card">
-      <h3 style="margin-top:0">🙏御祈念</h3>
-
-      <textarea id="prayer" maxlength="300" placeholder="御祈念内容を入力"></textarea>
-
-      <div class="btnGrid" style="margin-top:8px">
-        <button class="startBtn" onclick="savePrayer()">保存</button>
-        <button class="navBtn" onclick="backHome()">戻る</button>
-      </div>
-
-      <div id="prayerList"></div>
-    </div>
-  </div>
-
-  <div id="quizPage" style="display:none">
-    <div class="card">
-      <h3 style="margin-top:0">🧠 脳スッキリクイズ</h3>
-      <p>毎回ランダムで5問出題されます。</p>
-
-      <div id="quizSourceInfo" class="ach"></div>
-      <div id="quizScoreBoard" class="ach"></div>
-      <div id="quizDuplicateInfo" class="ach"></div>
-      <div id="quizList"></div>
-
-      <div class="btnGrid" style="margin-top:10px">
-        <button class="startBtn" onclick="submitQuiz()">答え合わせ</button>
-        <button class="quizBtn" onclick="generateQuiz()">問題を作り直す</button>
-        <button class="resetBtn" onclick="resetQuizScore()">スコアリセット</button>
-        <button class="resetBtn" onclick="resetQuizHistory()">重複履歴リセット</button>
-        <button class="navBtn" onclick="backHome()">戻る</button>
-      </div>
-
-      <div id="quizResult"></div>
-      <div class="smallNote">
-        ※ 重複回避: Session Token + 履歴チェック + 同回出題内重複排除
-      </div>
-    </div>
-  </div>
-
-  <div class="footerNote">Android版・らくらくホン向け完全版｜大きな文字・大きなボタンで操作しやすく最適化済み</div>
 </div>
 
 <script>
@@ -499,7 +479,11 @@ const quizResult = document.getElementById("quizResult");
 const quizScoreBoard = document.getElementById("quizScoreBoard");
 const quizSourceInfo = document.getElementById("quizSourceInfo");
 const quizDuplicateInfo = document.getElementById("quizDuplicateInfo");
+const quizGenre = document.getElementById("quizGenre");
+const quizDifficulty = document.getElementById("quizDifficulty");
 const homeBestScore = document.getElementById("homeBestScore");
+const modeAndroidBtn = document.getElementById("modeAndroidBtn");
+const modeEasyBtn = document.getElementById("modeEasyBtn");
 
 const clock = document.getElementById("clock");
 const startTime = document.getElementById("startTime");
@@ -512,18 +496,18 @@ const goal = document.getElementById("goal");
 const percent = document.getElementById("percent");
 const fill = document.getElementById("fill");
 const space = document.getElementById("space");
-const modeBadge = document.getElementById("modeBadge");
-const modeStandardBtn = document.getElementById("modeStandardBtn");
-const modeSimpleBtn = document.getElementById("modeSimpleBtn");
 
 /* ================= 永続キー ================= */
-const KEY = "dx_all_final_v3";
-const PRAY = "dx_pray_final_v3";
-const QUIZ_SCORE_KEY = "dx_quiz_score_v2";
-const QUIZ_TOKEN_KEY = "dx_quiz_token_v2";
-const QUIZ_TOKEN_TIME_KEY = "dx_quiz_token_time_v2";
-const QUIZ_HISTORY_KEY = "dx_quiz_history_v2";
+const KEY = "dx_all_final_v4";
+const PRAY = "dx_pray_final_v4";
+const QUIZ_SCORE_KEY = "dx_quiz_score_v4";
+const QUIZ_TOKEN_KEY = "dx_quiz_token_v4";
+const QUIZ_TOKEN_TIME_KEY = "dx_quiz_token_time_v4";
+const QUIZ_HISTORY_KEY = "dx_quiz_history_v4";
+const QUIZ_TRANSLATION_CACHE_KEY = "dx_quiz_translation_cache_v2";
 const DISPLAY_MODE_KEY = "dx_display_mode_v1";
+const QUIZ_FILTER_KEY = "dx_quiz_filter_v1";
+const QUIZ_ORIGINAL_VISIBLE_KEY = "dx_quiz_original_visible_v1";
 
 /* ================= 状態 ================= */
 let state = JSON.parse(localStorage.getItem(KEY)) || {
@@ -544,42 +528,23 @@ let quizScore = JSON.parse(localStorage.getItem(QUIZ_SCORE_KEY)) || {
   last:0
 };
 
-let quizToken = localStorage.getItem(QUIZ_TOKEN_KEY) || "";
-let quizTokenTime = Number(localStorage.getItem(QUIZ_TOKEN_TIME_KEY) || 0);
+let displayMode = localStorage.getItem(DISPLAY_MODE_KEY) || "easy";
+let quizFilter = loadQuizFilter();
 
 let quizData = [];
 let quizSelections = [];
 let quizAnswered = false;
 let quizLoading = false;
-let quizSource = "internet";
+let quizSource = "local_ja";
 let duplicateStats = {
   historySkipped: 0,
   currentSkipped: 0,
   fetchedTotal: 0,
+  translatedCount: 0,
   mode: "internet"
 };
 
-let lastApiCallAt = 0;
-let stage = {};
-
-/* ================= 表示モード ================= */
-function detectPreferredMode(){
-  const saved = localStorage.getItem(DISPLAY_MODE_KEY);
-  if(saved === "simple" || saved === "standard") return saved;
-  const ua = navigator.userAgent || "";
-  const narrow = window.innerWidth <= 420;
-  const isAndroid = /Android/i.test(ua);
-  return (narrow || isAndroid) ? "simple" : "standard";
-}
-
-function setDisplayMode(mode){
-  const simple = mode === "simple";
-  document.body.classList.toggle("simple-mode", simple);
-  modeBadge.textContent = simple ? "らくらくホン大文字" : "標準表示";
-  modeStandardBtn.classList.toggle("active", !simple);
-  modeSimpleBtn.classList.toggle("active", simple);
-  localStorage.setItem(DISPLAY_MODE_KEY, simple ? "simple" : "standard");
-}
+let autoModeApplied = false;
 
 /* ================= 保存 ================= */
 function save(){
@@ -590,9 +555,75 @@ function saveQuizScore(){
   localStorage.setItem(QUIZ_SCORE_KEY, JSON.stringify(quizScore));
 }
 
-function saveQuizToken(){
-  localStorage.setItem(QUIZ_TOKEN_KEY, quizToken || "");
-  localStorage.setItem(QUIZ_TOKEN_TIME_KEY, String(quizTokenTime || 0));
+function loadTranslationCache(){
+  try{
+    const data = JSON.parse(localStorage.getItem(QUIZ_TRANSLATION_CACHE_KEY) || "{}");
+    return (data && typeof data === "object") ? data : {};
+  }catch(e){
+    return {};
+  }
+}
+
+function loadQuizFilter(){
+  try{
+    const data = JSON.parse(localStorage.getItem(QUIZ_FILTER_KEY) || "{}");
+    return {
+      genre: data.genre || "all",
+      difficulty: data.difficulty || "all"
+    };
+  }catch(e){
+    return { genre:"all", difficulty:"all" };
+  }
+}
+
+function saveQuizFilter(){
+  localStorage.setItem(QUIZ_FILTER_KEY, JSON.stringify(quizFilter));
+}
+
+function syncQuizFilterUI(){
+  if(quizGenre) quizGenre.value = quizFilter.genre || "all";
+  if(quizDifficulty) quizDifficulty.value = quizFilter.difficulty || "all";
+}
+
+async function handleQuizFilterChange(){
+  quizFilter.genre = quizGenre ? quizGenre.value : "all";
+  quizFilter.difficulty = quizDifficulty ? quizDifficulty.value : "all";
+  saveQuizFilter();
+  renderQuizSource();
+  renderDuplicateInfo();
+  await generateQuiz();
+}
+
+/* ================= 表示モード ================= */
+function detectEasyDevice(){
+  const ua = navigator.userAgent || "";
+  const narrow = window.innerWidth <= 430;
+  const tallTouch = window.innerHeight >= 700;
+  const android = /Android/i.test(ua);
+  return narrow && tallTouch && android;
+}
+
+function applyDisplayMode(){
+  document.body.classList.toggle("easyMode", displayMode === "easy");
+  modeAndroidBtn.classList.toggle("active", displayMode === "android");
+  modeEasyBtn.classList.toggle("active", displayMode === "easy");
+}
+
+function setDisplayMode(mode){
+  displayMode = mode === "easy" ? "easy" : "android";
+  localStorage.setItem(DISPLAY_MODE_KEY, displayMode);
+  applyDisplayMode();
+}
+
+function applyAutoModeOnce(){
+  if(localStorage.getItem(DISPLAY_MODE_KEY)){
+    applyDisplayMode();
+    return;
+  }
+  if(autoModeApplied) return;
+  autoModeApplied = true;
+  displayMode = "easy";
+  applyDisplayMode();
 }
 
 /* ================= 履歴 ================= */
@@ -614,7 +645,7 @@ function saveQuizHistory(history){
     seen.add(sig);
     unique.unshift(sig);
   }
-  localStorage.setItem(QUIZ_HISTORY_KEY, JSON.stringify(unique.slice(-300)));
+  localStorage.setItem(QUIZ_HISTORY_KEY, JSON.stringify(unique.slice(-400)));
 }
 
 function appendQuizHistory(signatures){
@@ -624,9 +655,7 @@ function appendQuizHistory(signatures){
 }
 
 function resetQuizHistory(){
-  if(!confirm("重複履歴をリセットしますか？\n今後、過去に出た問題も再び出やすくなります。")){
-    return;
-  }
+  if(!confirm("重複履歴をリセットしますか？\n過去に出た問題がまた出やすくなります。")) return;
   localStorage.removeItem(QUIZ_HISTORY_KEY);
   duplicateStats.historySkipped = 0;
   renderDuplicateInfo();
@@ -636,10 +665,8 @@ function resetQuizHistory(){
 /* ================= カウント ================= */
 function get(){
   if(!state.running) return state;
-
-  let sec = (Date.now() - state.start) / 1000;
-  let add = sec * (state.per / 60);
-
+  const sec = (Date.now() - state.start) / 1000;
+  const add = sec * (state.per / 60);
   return {
     daily: state.daily + add,
     monthly: state.monthly + add,
@@ -649,24 +676,19 @@ function get(){
 
 /* ================= UI ================= */
 function ui(){
-  let c = get();
-
+  const c = get();
   daily.textContent = Math.floor(c.daily);
   monthly.textContent = Math.floor(c.monthly);
   total.textContent = Math.floor(c.total);
+  startTime.textContent = state.fixedStart ? new Date(state.fixedStart).toLocaleString("ja-JP") : "未開始";
 
-  startTime.textContent =
-    state.fixedStart ? new Date(state.fixedStart).toLocaleString("ja-JP") : "未開始";
-
-  let g = Number(goal.value || 1);
-  let p = Math.min(100, Math.floor((c.daily / g) * 100));
-
+  const g = Number(goal.value || 1);
+  const p = Math.min(100, Math.floor((c.daily / g) * 100));
   percent.textContent = p;
   fill.style.width = p + "%";
 
   checkDaily(c);
   checkStage(c.total);
-
   save();
 }
 
@@ -684,14 +706,14 @@ function toggle(){
     state.running = true;
     state.start = Date.now();
     state.fixedStart = state.fixedStart || Date.now();
-    btn.textContent = "■停止";
+    btn.textContent = "■ 停止";
   }else{
-    let c = get();
+    const c = get();
     state.daily = c.daily;
     state.monthly = c.monthly;
     state.total = c.total;
     state.running = false;
-    btn.textContent = "▶開始";
+    btn.textContent = "▶ 開始";
   }
 
   save();
@@ -719,63 +741,50 @@ function resetTotal(){
 
 /* ================= 1日達成 ================= */
 function checkDaily(c){
-  let g = Number(goal.value || 1);
-
+  const g = Number(goal.value || 1);
   if(state.done) return;
-
   if(c.daily >= g){
     state.done = true;
     save();
-    add("🌅 1日の目標達成！");
+    addAchievement("🌅 1日の目標達成！");
     screenFX();
   }
 }
 
 /* ================= 画面演出 ================= */
 function screenFX(){
-  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    return;
-  }
-
   document.body.classList.add("flash","shake");
-
-  setTimeout(()=>{
-    document.body.classList.remove("shake");
-  },2000);
-
-  setTimeout(()=>{
-    document.body.classList.remove("flash");
-  },5000);
+  setTimeout(()=> document.body.classList.remove("shake"), 2000);
+  setTimeout(()=> document.body.classList.remove("flash"), 5000);
 }
 
 /* ================= 段階演出 ================= */
-function add(text){
-  let box = document.getElementById("ach");
-  if(!box) return;
+let stage = {};
 
-  let d = document.createElement("div");
+function addAchievement(text){
+  const box = document.getElementById("ach");
+  if(!box) return;
+  const d = document.createElement("div");
   d.className = "ach";
   d.textContent = text;
   box.prepend(d);
 }
 
 function checkStage(t){
-  if(t>=10000 && !stage[10000]){stage[10000]=1;add("🥁 大地：スタート");screenFX();}
-  if(t>=50000 && !stage[50000]){stage[50000]=1;add("🎀 葵：いい感じ");screenFX();}
-  if(t>=100000 && !stage[100000]){stage[100000]=1;add("🎸 蓮：積み重ね");screenFX();}
-  if(t>=200000 && !stage[200000]){stage[200000]=1;add("🎤 結衣：届いた");screenFX();}
-  if(t>=500000 && !stage[500000]){stage[500000]=1;add("🎹 悠真：すごい");screenFX();}
-  if(t>=700000 && !stage[700000]){stage[700000]=1;add("✨ 美琴：あと少し");screenFX();}
-
+  if(t>=10000 && !stage[10000]){stage[10000]=1;addAchievement("🥁 大地：スタート");screenFX();}
+  if(t>=50000 && !stage[50000]){stage[50000]=1;addAchievement("🎀 葵：いい感じ");screenFX();}
+  if(t>=100000 && !stage[100000]){stage[100000]=1;addAchievement("🎸 蓮：積み重ね");screenFX();}
+  if(t>=200000 && !stage[200000]){stage[200000]=1;addAchievement("🎤 結衣：届いた");screenFX();}
+  if(t>=500000 && !stage[500000]){stage[500000]=1;addAchievement("🎹 悠真：すごい");screenFX();}
+  if(t>=700000 && !stage[700000]){stage[700000]=1;addAchievement("✨ 美琴：あと少し");screenFX();}
   if(t>=1000000 && !stage[1000000]){
     stage[1000000]=1;
-    add("🏆 100万達成！");
-    add("🌌 宇宙モード起動");
+    addAchievement("🏆 100万達成！");
+    addAchievement("🌌 宇宙モード起動");
     createSpace();
     screenFX();
-
     setTimeout(()=>{
-      add("🚀 覚醒完了");
+      addAchievement("🚀 覚醒完了");
       endSpace();
     },8000);
   }
@@ -783,18 +792,11 @@ function checkStage(t){
 
 /* ================= 宇宙 ================= */
 function createSpace(){
-  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-    return;
-  }
-
   space.style.display = "block";
   space.innerHTML = "";
   document.body.classList.add("flash");
-
-  const starCount = document.body.classList.contains("simple-mode") ? 80 : 120;
-
-  for(let i=0;i<starCount;i++){
-    let s = document.createElement("div");
+  for(let i=0;i<120;i++){
+    const s = document.createElement("div");
     s.className = "star";
     s.style.left = Math.random()*100 + "%";
     s.style.top = Math.random()*100 + "%";
@@ -818,86 +820,74 @@ function backHome(){
   hideAllPages();
   main.style.display = "block";
   renderHomeQuizStats();
-  window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function openPrayer(){
   hideAllPages();
   prayerPage.style.display = "block";
   renderPrayer();
-  window.scrollTo({top:0, behavior:'smooth'});
 }
 
 async function openQuiz(){
   hideAllPages();
   quizPage.style.display = "block";
+  syncQuizFilterUI();
   renderQuizScore();
+  renderQuizSource();
   renderDuplicateInfo();
-  window.scrollTo({top:0, behavior:'smooth'});
   await generateQuiz();
 }
 
 /* ================= 御祈念 ================= */
 function savePrayer(){
-  let list = JSON.parse(localStorage.getItem(PRAY) || "[]");
-
+  const list = JSON.parse(localStorage.getItem(PRAY) || "[]");
   if(!prayer.value.trim()){
     alert("御祈念内容を入力してください");
     return;
   }
-
   list.unshift({
     text: prayer.value,
     date: new Date().toLocaleString("ja-JP"),
     ok: false
   });
-
   localStorage.setItem(PRAY, JSON.stringify(list));
   prayer.value = "";
   renderPrayer();
 }
 
 function renderPrayer(){
-  let list = JSON.parse(localStorage.getItem(PRAY) || "[]");
+  const list = JSON.parse(localStorage.getItem(PRAY) || "[]");
   prayerList.innerHTML = "";
-
   list.forEach((x,i)=>{
-    let d = document.createElement("div");
+    const d = document.createElement("div");
     d.className = "ach";
-
     d.innerHTML = `
       ${x.date}<br>
       🙏 ${x.text}<br>
-      <div class="btnGrid" style="margin-top:8px">
-        <button onclick="toggleOk(${i})"
-          style="background:${x.ok?'red':'#9e9e9e'};color:white;">${x.ok ? '達成済み' : '未達成'}</button>
-        <button class="resetBtn" onclick="delPrayer(${i})">削除</button>
+      <div class="actionGrid" style="margin-top:8px;">
+        <button onclick="toggleOk(${i})" style="background:${x.ok ? '#d32f2f' : '#9e9e9e'};color:white;">${x.ok ? '完了' : '未完了'}</button>
+        <button onclick="delPrayer(${i})" class="resetBtn">削除</button>
       </div>
     `;
-
     prayerList.appendChild(d);
   });
 }
 
 function toggleOk(i){
-  let list = JSON.parse(localStorage.getItem(PRAY) || "[]");
+  const list = JSON.parse(localStorage.getItem(PRAY) || "[]");
   list[i].ok = !list[i].ok;
   localStorage.setItem(PRAY, JSON.stringify(list));
   renderPrayer();
 }
 
 function delPrayer(i){
-  let list = JSON.parse(localStorage.getItem(PRAY) || "[]");
+  const list = JSON.parse(localStorage.getItem(PRAY) || "[]");
   list.splice(i,1);
   localStorage.setItem(PRAY, JSON.stringify(list));
   renderPrayer();
 }
 
 /* ================= クイズ共通 ================= */
-function rand(min,max){
-  return Math.floor(Math.random()*(max-min+1))+min;
-}
-
 function shuffle(arr){
   return [...arr].sort(()=>Math.random()-0.5);
 }
@@ -907,9 +897,7 @@ function sleep(ms){
 }
 
 function decodeText(text){
-  try{
-    text = decodeURIComponent(text);
-  }catch(e){}
+  try{text = decodeURIComponent(text);}catch(e){}
   const area = document.createElement("textarea");
   area.innerHTML = text;
   return area.value;
@@ -917,9 +905,7 @@ function decodeText(text){
 
 function normalizeSignature(text){
   let t = decodeText(String(text || ""));
-  try{
-    t = t.normalize("NFKC");
-  }catch(e){}
+  try{ t = t.normalize("NFKC"); }catch(e){}
   t = t.toLowerCase();
   t = t.replace(/<[^>]*>/g,"");
   t = t.replace(/[\s\u3000]+/g,"");
@@ -950,316 +936,208 @@ function renderQuizScore(){
   renderHomeQuizStats();
 }
 
+function getFilteredQuizBank(){
+  return JAPANESE_QUIZ_BANK.filter(item => {
+    const genreOk = quizFilter.genre === "all" || item.category === quizFilter.genre;
+    const difficultyOk = quizFilter.difficulty === "all" || item.difficulty === quizFilter.difficulty;
+    return genreOk && difficultyOk;
+  });
+}
+
 function renderQuizSource(){
-  if(quizSource === "internet"){
-    quizSourceInfo.innerHTML = "🌐 出題元: インターネット取得（重複回避強化版）";
-  }else if(quizSource === "mixed"){
-    quizSourceInfo.innerHTML = "🌐＋🧩 出題元: インターネット中心 + 一部予備問題";
-  }else{
-    quizSourceInfo.innerHTML = "⚠️ 出題元: ローカル予備問題のみ（通信失敗時）";
-  }
+  const genreLabel = quizFilter.genre === "all" ? "全ジャンル" : quizFilter.genre;
+  const difficultyLabel = quizFilter.difficulty === "all" ? "すべての難易度" : quizFilter.difficulty;
+  const count = getFilteredQuizBank().length;
+  quizSourceInfo.innerHTML = `🇯🇵 出題条件: ${genreLabel} / ${difficultyLabel}<br>📚 条件に合う問題数: ${count}問`;
 }
 
 function renderDuplicateInfo(){
   const historyCount = loadQuizHistory().length;
   quizDuplicateInfo.innerHTML = `
+    🇯🇵 登録問題数: ${JAPANESE_QUIZ_BANK.length}問<br>
+    🔎 現在の候補数: ${getFilteredQuizBank().length}問<br>
     🔁 重複回避履歴: ${historyCount}件保存中<br>
     🚫 履歴で除外: ${duplicateStats.historySkipped}件<br>
-    🚫 同回出題で除外: ${duplicateStats.currentSkipped}件<br>
-    📥 今回取得候補数: ${duplicateStats.fetchedTotal}件
+    🚫 同回出題で除外: ${duplicateStats.currentSkipped}件
   `;
 }
 
 function resetQuizScore(){
-  if(!confirm("クイズスコアをリセットしますか？")){
-    return;
-  }
-
-  quizScore = {
-    plays:0,
-    totalCorrect:0,
-    best:0,
-    last:0
-  };
-
+  if(!confirm("クイズスコアをリセットしますか？")) return;
+  quizScore = { plays:0, totalCorrect:0, best:0, last:0 };
   saveQuizScore();
   renderQuizScore();
   quizResult.innerHTML = `<div class="quizResult">🧹 クイズスコアをリセットしました</div>`;
 }
 
-/* ================= Session Token ================= */
-function isTokenFresh(){
-  if(!quizToken || !quizTokenTime) return false;
-  const sixHours = 6 * 60 * 60 * 1000;
-  return (Date.now() - quizTokenTime) < (sixHours - 10 * 60 * 1000);
-}
+/* ================= ジャンル別・難易度別 日本語クイズデータ ================= */
+const JAPANESE_QUIZ_BANK = [
+  { q:"電話をかけるときにまず開くことが多いアプリはどれですか？", correct:"電話アプリ", choices:["電話アプリ","電卓","カメラ","時計"], category:"スマホ基本", difficulty:"初級" },
+  { q:"撮った写真を見返すときによく使うものはどれですか？", correct:"写真アプリ", choices:["写真アプリ","設定アプリ","地図アプリ","メモアプリ"], category:"スマホ基本", difficulty:"初級" },
+  { q:"スマートフォンの文字を大きくしたいときに見直す設定はどれですか？", correct:"文字サイズ", choices:["文字サイズ","機内モード","Bluetooth","着信履歴"], category:"スマホ基本", difficulty:"初級" },
+  { q:"動画の音が聞こえないとき、まず確かめたいのはどれですか？", correct:"音量", choices:["音量","壁紙","日付表示","画面の色"], category:"スマホ基本", difficulty:"初級" },
+  { q:"連絡先の名前を探すときに役立つ操作はどれですか？", correct:"検索欄に名前を入れる", choices:["検索欄に名前を入れる","電源を切る","画面を回す","明るさを上げる"], category:"スマホ基本", difficulty:"初級" },
 
-async function requestNewToken(){
-  const res = await fetch("https://opentdb.com/api_token.php?command=request");
-  const data = await res.json();
+  { q:"ホーム画面にある小さな絵や印を押してアプリを開くものを何といいますか？", correct:"アイコン", choices:["アイコン","通知音","容量","背景"], category:"スマホ基本", difficulty:"中級" },
+  { q:"今画面に表示されている内容を画像として残す操作は何ですか？", correct:"スクリーンショット", choices:["スクリーンショット","再起動","同期","共有停止"], category:"スマホ基本", difficulty:"中級" },
+  { q:"本体の動きが重いときに試すことがある基本的な対処はどれですか？", correct:"再起動する", choices:["再起動する","壁紙を変える","写真を増やす","着信音を消す"], category:"スマホ基本", difficulty:"中級" },
+  { q:"不要になった写真やアプリを整理する主な目的はどれですか？", correct:"容量を空けるため", choices:["容量を空けるため","電波を強くするため","音を大きくするため","画面を明るくするため"], category:"スマホ基本", difficulty:"中級" },
+  { q:"通知が多くて困るときに見直す設定として適切なのはどれですか？", correct:"通知設定", choices:["通知設定","言語設定","日付設定","壁紙設定"], category:"スマホ基本", difficulty:"中級" },
 
-  if(data && data.response_code === 0 && data.token){
-    quizToken = data.token;
-    quizTokenTime = Date.now();
-    saveQuizToken();
-    return quizToken;
-  }
-  throw new Error("token request failed");
-}
+  { q:"機内モードをオンにすると起こりやすいことはどれですか？", correct:"通信機能が一時的に止まる", choices:["通信機能が一時的に止まる","画面が必ず暗くなる","写真が全部消える","時計が止まる"], category:"スマホ基本", difficulty:"上級" },
+  { q:"Bluetoothが役立ちやすい使い方はどれですか？", correct:"ワイヤレス機器をつなぐこと", choices:["ワイヤレス機器をつなぐこと","電池を増やすこと","天気を変えること","文字を翻訳すること"], category:"スマホ基本", difficulty:"上級" },
+  { q:"日付や時刻がずれているとき、まず確認したい設定はどれですか？", correct:"日付と時刻の自動設定", choices:["日付と時刻の自動設定","カメラ設定","壁紙設定","通知音設定"], category:"スマホ基本", difficulty:"上級" },
+  { q:"スマートフォンの電池を長持ちさせたいときの工夫として比較的適切なのはどれですか？", correct:"画面の明るさを下げる", choices:["画面の明るさを下げる","ずっと動画を流し続ける","使わないアプリを全部開く","音量を最大にする"], category:"スマホ基本", difficulty:"上級" },
+  { q:"文字入力を話し声で行いたいときに使えることがある機能はどれですか？", correct:"音声入力", choices:["音声入力","省電力表示","機内モード","画面録画"], category:"スマホ基本", difficulty:"上級" },
 
-async function resetTokenOnServer(){
-  if(!quizToken){
-    return requestNewToken();
-  }
+  { q:"調べものをするときによく使うものはどれですか？", correct:"検索", choices:["検索","印刷","録音","計測"], category:"インターネット", difficulty:"初級" },
+  { q:"家の中で無線でインターネットにつなぐ仕組みとして一般的なものはどれですか？", correct:"Wi‑Fi", choices:["Wi‑Fi","スクリーンショット","タイマー","機内モード"], category:"インターネット", difficulty:"初級" },
+  { q:"ホームページの場所を表すものは何ですか？", correct:"URL", choices:["URL","音量","画面の色","電池残量"], category:"インターネット", difficulty:"初級" },
+  { q:"ホームページを見るために使うものとして最も近いのはどれですか？", correct:"ブラウザ", choices:["ブラウザ","電卓","懐中電灯","歩数計"], category:"インターネット", difficulty:"初級" },
+  { q:"地図でお店や目的地を探すときに使うと便利なものはどれですか？", correct:"地図アプリ", choices:["地図アプリ","時計アプリ","録音アプリ","電卓アプリ"], category:"インターネット", difficulty:"初級" },
 
-  const res = await fetch(`https://opentdb.com/api_token.php?command=reset&token=${quizToken}`);
-  const data = await res.json();
+  { q:"インターネット上から写真や文書を受け取ることを何といいますか？", correct:"ダウンロード", choices:["ダウンロード","アップロード","同期","削除"], category:"インターネット", difficulty:"中級" },
+  { q:"写真や文書をインターネット上へ送ることを何といいますか？", correct:"アップロード", choices:["アップロード","ダウンロード","再起動","複製"], category:"インターネット", difficulty:"中級" },
+  { q:"表示が古いままに見えるページで試すことがある操作はどれですか？", correct:"ページを更新する", choices:["ページを更新する","音量を下げる","明るさを上げる","電源を切る"], category:"インターネット", difficulty:"中級" },
+  { q:"検索結果をうのみにしないために大切なことはどれですか？", correct:"複数の情報源を見比べること", choices:["複数の情報源を見比べること","最初の1件だけ信じること","見出しだけで決めること","日付を見ないこと"], category:"インターネット", difficulty:"中級" },
+  { q:"QRコードを読み取ると開かれることが多いものはどれですか？", correct:"案内ページや情報", choices:["案内ページや情報","電池設定","文字サイズ設定","内部温度表示"], category:"インターネット", difficulty:"中級" },
 
-  if(data && data.response_code === 0){
-    quizTokenTime = Date.now();
-    saveQuizToken();
-    return quizToken;
-  }
+  { q:"クラウド保存の説明として最も近いものはどれですか？", correct:"インターネット経由でデータを保管すること", choices:["インターネット経由でデータを保管すること","紙に書いて保管すること","画面を固定すること","電源を切ること"], category:"インターネット", difficulty:"上級" },
+  { q:"通信が不安定なときに確認したいこととして比較的適切なのはどれですか？", correct:"Wi‑Fiやモバイル通信が有効かどうか", choices:["Wi‑Fiやモバイル通信が有効かどうか","壁紙の色","着信音の種類","写真の枚数"], category:"インターネット", difficulty:"上級" },
+  { q:"リンクを開く前に気をつけて見たいものはどれですか？", correct:"どこへ移動するURLか", choices:["どこへ移動するURLか","文字の色","音の大きさ","画面の明るさ"], category:"インターネット", difficulty:"上級" },
+  { q:"オンライン会議で相手に声を届けるために必要になりやすいものはどれですか？", correct:"マイク", choices:["マイク","電卓","歩数計","懐中電灯"], category:"インターネット", difficulty:"上級" },
+  { q:"地図アプリで目的地までの行き方を知りたいときによく使う機能はどれですか？", correct:"ルート案内", choices:["ルート案内","機内モード","自動削除","着信拒否"], category:"インターネット", difficulty:"上級" },
 
-  return requestNewToken();
-}
+  { q:"他人に知られないよう大切に扱う情報を何といいますか？", correct:"個人情報", choices:["個人情報","季節情報","交通情報","観光情報"], category:"セキュリティ", difficulty:"初級" },
+  { q:"不審なメールが届いたときの対応として適切なのはどれですか？", correct:"不用意に開かない", choices:["不用意に開かない","すぐ返信する","全員に転送する","必ず保存する"], category:"セキュリティ", difficulty:"初級" },
+  { q:"スマートフォンにロックをかける主な目的はどれですか？", correct:"勝手に使われにくくするため", choices:["勝手に使われにくくするため","画面を明るくするため","写真を増やすため","音を大きくするため"], category:"セキュリティ", difficulty:"初級" },
+  { q:"知らない番号から着信があったとき、まず考えたいことはどれですか？", correct:"相手が信頼できるかどうか", choices:["相手が信頼できるかどうか","スマホの色","壁紙の写真","時刻の表示"], category:"セキュリティ", difficulty:"初級" },
+  { q:"アプリを入れるときに安心しやすい場所はどれですか？", correct:"公式ストア", choices:["公式ストア","見知らぬ広告のリンク","差出人不明の添付ファイル","出所不明の掲示板"], category:"セキュリティ", difficulty:"初級" },
 
-async function ensureQuizToken(forceNew=false){
-  if(!forceNew && isTokenFresh()){
-    return quizToken;
-  }
-  return requestNewToken();
-}
+  { q:"同じパスワードをいろいろなサービスで使い回さないほうがよい理由として近いものはどれですか？", correct:"一つ漏れると他にも影響しやすいから", choices:["一つ漏れると他にも影響しやすいから","通信が遅くなるから","画面が暗くなるから","音が小さくなるから"], category:"セキュリティ", difficulty:"中級" },
+  { q:"二段階認証の主な役割として最も近いものはどれですか？", correct:"本人確認をより確実にすること", choices:["本人確認をより確実にすること","画面を見やすくすること","充電を早くすること","文字を大きくすること"], category:"セキュリティ", difficulty:"中級" },
+  { q:"怪しいメッセージ内のURLを押さないほうがよい主な理由はどれですか？", correct:"危険なページへ移動するおそれがあるから", choices:["危険なページへ移動するおそれがあるから","画面が明るくなりすぎるから","音量が変わるから","時計が止まるから"], category:"セキュリティ", difficulty:"中級" },
+  { q:"パスワードを決めるときの工夫として比較的よいものはどれですか？", correct:"短すぎず推測されにくいものにする", choices:["短すぎず推測されにくいものにする","自分の誕生日だけにする","全部同じ数字にする","紙に大きく貼る"], category:"セキュリティ", difficulty:"中級" },
+  { q:"SNSへ写真を投稿する前に気をつけたいことはどれですか？", correct:"個人情報が写っていないか確認する", choices:["個人情報が写っていないか確認する","必ず全員へ送る","音量を確認する","電池を外す"], category:"セキュリティ", difficulty:"中級" },
 
-async function waitForRateLimit(){
-  const needWait = 5200 - (Date.now() - lastApiCallAt);
-  if(needWait > 0){
-    await sleep(needWait);
-  }
-  lastApiCallAt = Date.now();
-}
+  { q:"公共の場所の無料Wi‑Fiを使うときに気をつけたいこととして近いものはどれですか？", correct:"大切な情報の入力は慎重に行う", choices:["大切な情報の入力は慎重に行う","必ず何でも入力する","画面を最も明るくする","音量を最大にする"], category:"セキュリティ", difficulty:"上級" },
+  { q:"『この場でしか使えない特別な確認番号』のような数字を他人に教えないほうがよい理由はどれですか？", correct:"本人確認に悪用されるおそれがあるから", choices:["本人確認に悪用されるおそれがあるから","天気が変わるから","通知音が消えるから","写真が増えるから"], category:"セキュリティ", difficulty:"上級" },
+  { q:"知らない人から『今すぐ操作して』と急かされたときに比較的適切な対応はどれですか？", correct:"いったん落ち着いて確認する", choices:["いったん落ち着いて確認する","すぐに全部操作する","そのまま全員に共有する","電源を入れっぱなしにする"], category:"セキュリティ", difficulty:"上級" },
+  { q:"端末やアプリの更新をしておく意味として近いものはどれですか？", correct:"不具合の改善や安全性向上が期待できる", choices:["不具合の改善や安全性向上が期待できる","文字が小さくなる","通話が必ず増える","写真が自動で消える"], category:"セキュリティ", difficulty:"上級" },
+  { q:"見覚えのない画面で料金や当選を急に知らせる表示が出たときにまず大切なのはどれですか？", correct:"すぐ支払わず内容を確認すること", choices:["すぐ支払わず内容を確認すること","急いで支払うこと","画面を強く連打すること","必ず友人全員に送ること"], category:"セキュリティ", difficulty:"上級" },
 
-async function fetchTriviaBatch(amount=10){
-  let tries = 0;
+  { q:"写真を家族や友人に送るときによく使うものはどれですか？", correct:"メッセージアプリ", choices:["メッセージアプリ","電卓アプリ","時計アプリ","歩数計アプリ"], category:"活用・AI", difficulty:"初級" },
+  { q:"『保存』の意味として最も近いものはどれですか？", correct:"あとで使えるように残すこと", choices:["あとで使えるように残すこと","その場で消すこと","音を消すこと","電源を切ること"], category:"活用・AI", difficulty:"初級" },
+  { q:"『削除』の意味として最も近いものはどれですか？", correct:"不要なものを消すこと", choices:["不要なものを消すこと","新しく作ること","大きくすること","送信すること"], category:"活用・AI", difficulty:"初級" },
+  { q:"『共有』の意味として最も近いものはどれですか？", correct:"ほかの人やアプリへ渡せるようにすること", choices:["ほかの人やアプリへ渡せるようにすること","音量を上げること","画面を閉じること","充電を止めること"], category:"活用・AI", difficulty:"初級" },
+  { q:"地図アプリで現在地を知りたいときに役立つものはどれですか？", correct:"位置情報", choices:["位置情報","計算結果","写真の色","着信音"], category:"活用・AI", difficulty:"初級" },
 
-  while(tries < 4){
-    tries++;
-    await ensureQuizToken(false);
-    await waitForRateLimit();
+  { q:"会話形式で質問や相談ができるAIサービスに期待されやすい使い方はどれですか？", correct:"文章の下書きや言い換えを手伝ってもらうこと", choices:["文章の下書きや言い換えを手伝ってもらうこと","電池を物理的に増やすこと","壊れた部品を自動で直すこと","天気を変えること"], category:"活用・AI", difficulty:"中級" },
+  { q:"AIチャットに入力しないほうがよいものはどれですか？", correct:"機密情報や大切な個人情報", choices:["機密情報や大切な個人情報","一般的な質問","言い換えの相談","献立の相談"], category:"活用・AI", difficulty:"中級" },
+  { q:"メールの件名の役割として最も近いものはどれですか？", correct:"内容を短く伝えること", choices:["内容を短く伝えること","容量を増やすこと","自動で削除すること","写真を圧縮すること"], category:"活用・AI", difficulty:"中級" },
+  { q:"オンライン会議で相手の声が聞き取りにくいときにまず試しやすいことはどれですか？", correct:"音量や接続状況を確認する", choices:["音量や接続状況を確認する","壁紙を変える","電源を切ったままにする","写真を増やす"], category:"活用・AI", difficulty:"中級" },
+  { q:"受信した写真をあとで見つけやすくする方法として近いものはどれですか？", correct:"わかりやすい場所に保存する", choices:["わかりやすい場所に保存する","すべて削除する","必ず印刷する","画面を暗くする"], category:"活用・AI", difficulty:"中級" },
 
-    const url = `https://opentdb.com/api.php?amount=${amount}&type=multiple&encode=url3986&token=${quizToken}`;
-    const res = await fetch(url);
-    const data = await res.json();
-
-    if(data.response_code === 0){
-      quizTokenTime = Date.now();
-      saveQuizToken();
-      return Array.isArray(data.results) ? data.results : [];
-    }
-
-    if(data.response_code === 3){
-      await requestNewToken();
-      continue;
-    }
-
-    if(data.response_code === 4){
-      await resetTokenOnServer();
-      continue;
-    }
-
-    if(data.response_code === 5){
-      await sleep(5500);
-      continue;
-    }
-
-    break;
-  }
-
-  throw new Error("trivia fetch failed");
-}
-
-function convertTriviaItem(item){
-  const question = decodeText(item.question);
-  const correct = decodeText(item.correct_answer);
-  const incorrect = (item.incorrect_answers || []).map(x => decodeText(x));
-  const choices = shuffle([correct, ...incorrect]);
-
-  return {
-    q: question,
-    correct: correct,
-    choices: choices,
-    category: decodeText(item.category || ""),
-    difficulty: decodeText(item.difficulty || ""),
-    signature: makeSignature(question, correct),
-    from: "internet"
-  };
-}
-
-/* ================= 予備問題 ================= */
-const fallbackQuestions = [
-  { q:"CPUの意味として最も近いものは？", correct:"中央処理装置", choices:["中央処理装置","画面制御装置","音声処理装置","通信停止装置"] },
-  { q:"URLは主に何を示す？", correct:"Web上の住所", choices:["音量設定","Web上の住所","画像サイズ","電池残量"] },
-  { q:"パスワード管理で望ましいのは？", correct:"使い回しを避ける", choices:["全サイト同じ","紙に公開する","使い回しを避ける","短く単純にする"] },
-  { q:"ブラウザの例として正しいのは？", correct:"Chrome", choices:["Chrome","Excel","Word","Paint"] },
-  { q:"Wi-Fiは主に何のために使う？", correct:"無線通信", choices:["印刷専用","無線通信","画面拡大","音量調整"] },
-  { q:"AIは一般に何の略？", correct:"Artificial Intelligence", choices:["Automatic Internet","Artificial Intelligence","Analog Interface","Advanced Input"] },
-  { q:"検索エンジンに該当するのは？", correct:"Google", choices:["Google","PowerPoint","Photoshop","Bluetooth"] },
-  { q:"メールの件名は何のため？", correct:"内容の要約", choices:["本文を隠す","内容の要約","容量を増やす","削除防止"] },
-  { q:"保存前の一時データ置き場として近いのは？", correct:"メモリ", choices:["紙","メモリ","机","スピーカー"] },
-  { q:"二段階認証の目的は？", correct:"安全性向上", choices:["通信速度低下","安全性向上","画面明るさ調整","印刷品質向上"] },
-  { q:"クラウド保存の特徴として近いのは？", correct:"ネット経由で保存", choices:["紙に保存","ネット経由で保存","電源を切る","印刷だけ可能"] },
-  { q:"ダウンロードは何をすること？", correct:"受け取る", choices:["消す","送る","受け取る","圧縮だけする"] },
-  { q:"アップロードは何をすること？", correct:"送る", choices:["受け取る","閉じる","送る","印刷する"] },
-  { q:"リンクを開く前に確認したいのは？", correct:"URLの行き先", choices:["画面の色","URLの行き先","文字の大きさ","音量"] },
-  { q:"インターネット接続がないと使いにくいものは？", correct:"Web検索", choices:["懐中電灯","紙の本","Web検索","電卓"] },
-  { q:"SNSで注意したいことは？", correct:"個人情報の公開", choices:["個人情報の公開","文字数ゼロ","背景色","電源の色"] },
-  { q:"再起動は何のために行うことが多い？", correct:"一時的不調の改善", choices:["本体を冷凍","一時的不調の改善","画面を割る","容量を紙に写す"] },
-  { q:"QRコードを読み取ると何が起きることが多い？", correct:"URLや情報を開く", choices:["音量が上がる","電源が切れる","URLや情報を開く","色が変わる"] },
-  { q:"OSの例として正しいのは？", correct:"Windows", choices:["Windows","JPEG","USB","PDF"] },
-  { q:"ブラウザでページ更新をする目的は？", correct:"最新表示にする", choices:["色を変える","音を消す","最新表示にする","容量を減らす"] },
-  { q:"迷惑メールへの対応で適切なのは？", correct:"不用意に開かない", choices:["全部返信","不用意に開かない","必ず転送","印刷して放置"] },
-  { q:"AIチャットに入力しない方がよいものは？", correct:"機密情報", choices:["天気の質問","機密情報","一般的な相談","献立の相談"] },
-  { q:"画像ファイル形式の例は？", correct:"PNG", choices:["PNG","TXT","CSV","DOCX"] },
-  { q:"インターネットで情報確認するとき大切なのは？", correct:"複数ソース確認", choices:["最初の1件だけ","複数ソース確認","題名だけ見る","日付を見ない"] },
-  { q:"Web会議で必要になりやすいものは？", correct:"マイク", choices:["定規","マイク","消しゴム","はさみ"] }
+  { q:"AIの回答を使うときに意識したいこととして比較的適切なのはどれですか？", correct:"大事な情報は自分でも確認する", choices:["大事な情報は自分でも確認する","必ずすべて正しいと決めつける","確認せずそのまま全員へ送る","内容を見ずに保存だけする"], category:"活用・AI", difficulty:"上級" },
+  { q:"AIに依頼するとき、より希望に近い結果を得やすくする工夫はどれですか？", correct:"してほしいことを具体的に伝える", choices:["してほしいことを具体的に伝える","何も書かない","毎回同じ一語だけ送る","音量を最大にする"], category:"活用・AI", difficulty:"上級" },
+  { q:"自動翻訳の結果を使うときに気をつけたいこととして近いものはどれですか？", correct:"不自然な表現がないか見直すこと", choices:["不自然な表現がないか見直すこと","必ず原文を消すこと","通知を全部切ること","写真を縮小すること"], category:"活用・AI", difficulty:"上級" },
+  { q:"同じ内容でも、相手に合わせて丁寧な表現へ直したいときにAIが役立ちやすい使い方はどれですか？", correct:"文章の言い換えを頼むこと", choices:["文章の言い換えを頼むこと","電池交換を頼むこと","電波を増やすこと","画面掃除を頼むこと"], category:"活用・AI", difficulty:"上級" },
+  { q:"AIの答えをそのまま使う前に確認したいこととして最も近いものはどれですか？", correct:"目的に合っていて誤りがないか", choices:["目的に合っていて誤りがないか","壁紙の色が合うか","着信音が大きいか","本体が熱いか"], category:"活用・AI", difficulty:"上級" }
 ];
 
-function generateFallbackQuiz(count, currentSet, historySet){
-  const pool = shuffle(fallbackQuestions).map(item=>{
-    const signature = makeSignature(item.q, item.correct);
+function buildJapaneseQuestionPool(){
+  return shuffle(getFilteredQuizBank()).map(item=>{
+    const shuffledChoices = shuffle(item.choices);
     return {
-      q:item.q,
-      correct:item.correct,
-      choices:shuffle(item.choices),
-      category:"Fallback",
-      difficulty:"easy",
-      signature,
-      from:"local"
+      q: item.q,
+      correct: item.correct,
+      choices: shuffledChoices,
+      category: item.category,
+      difficulty: item.difficulty,
+      signature: makeSignature(item.q, item.correct),
+      from: "local_ja",
+      qJa: item.q,
+      correctJa: item.correct,
+      choicesJa: [...shuffledChoices],
+      categoryJa: item.category,
+      difficultyJa: item.difficulty
     };
   });
-
-  const picked = [];
-
-  for(const item of pool){
-    if(picked.length >= count) break;
-    if(currentSet.has(item.signature)) continue;
-    if(historySet.has(item.signature)) continue;
-    currentSet.add(item.signature);
-    picked.push(item);
-  }
-
-  if(picked.length < count){
-    for(const item of pool){
-      if(picked.length >= count) break;
-      if(currentSet.has(item.signature)) continue;
-      currentSet.add(item.signature);
-      picked.push(item);
-    }
-  }
-
-  return picked;
 }
 
-/* ================= 重複回避つきクイズ生成 ================= */
-async function buildUniqueInternetQuiz(targetCount=5){
+async function buildUniqueJapaneseQuiz(targetCount=5){
   const history = loadQuizHistory();
-  const recentHistory = history.slice(-200);
+  const recentHistory = history.slice(-240);
   const historySet = new Set(recentHistory);
   const currentSet = new Set();
   const selected = [];
+  const pool = buildJapaneseQuestionPool();
 
   duplicateStats = {
     historySkipped: 0,
     currentSkipped: 0,
-    fetchedTotal: 0,
-    mode: "internet"
+    fetchedTotal: pool.length,
+    translatedCount: 0,
+    mode: "local_ja"
   };
 
-  let phase = 1;
-  let attempts = 0;
+  for(const item of pool){
+    if(selected.length >= targetCount) break;
+    if(currentSet.has(item.signature)){
+      duplicateStats.currentSkipped++;
+      continue;
+    }
+    if(historySet.has(item.signature)){
+      duplicateStats.historySkipped++;
+      continue;
+    }
+    currentSet.add(item.signature);
+    selected.push(item);
+  }
 
-  while(selected.length < targetCount && attempts < 4){
-    attempts++;
-    const batch = await fetchTriviaBatch(15);
-    duplicateStats.fetchedTotal += batch.length;
-
-    for(const raw of batch){
-      const item = convertTriviaItem(raw);
+  if(selected.length < targetCount){
+    for(const item of pool){
+      if(selected.length >= targetCount) break;
       if(currentSet.has(item.signature)){
         duplicateStats.currentSkipped++;
         continue;
       }
-      if(historySet.has(item.signature)){
-        duplicateStats.historySkipped++;
-        continue;
-      }
-
       currentSet.add(item.signature);
       selected.push(item);
-      if(selected.length >= targetCount) break;
     }
-  }
-
-  if(selected.length < targetCount){
-    phase = 2;
-    let relaxedAttempts = 0;
-
-    while(selected.length < targetCount && relaxedAttempts < 2){
-      relaxedAttempts++;
-      const batch = await fetchTriviaBatch(10);
-      duplicateStats.fetchedTotal += batch.length;
-
-      for(const raw of batch){
-        const item = convertTriviaItem(raw);
-        if(currentSet.has(item.signature)){
-          duplicateStats.currentSkipped++;
-          continue;
-        }
-        currentSet.add(item.signature);
-        selected.push(item);
-        if(selected.length >= targetCount) break;
-      }
-    }
-  }
-
-  let mode = (phase === 1 || selected.length === targetCount) ? "internet" : "mixed";
-
-  if(selected.length < targetCount){
-    const fallback = generateFallbackQuiz(targetCount - selected.length, currentSet, historySet);
-    selected.push(...fallback);
-    mode = selected.some(x => x.from === "internet") ? "mixed" : "local";
   }
 
   appendQuizHistory(selected.map(x => x.signature));
-  duplicateStats.mode = mode;
-
-  return { questions: selected.slice(0, targetCount), mode };
+  return { questions: selected.slice(0, targetCount), mode: "local_ja" };
 }
 
+/* ================= クイズ生成 ================= */
 async function generateQuiz(){
   if(quizLoading) return;
+
+  quizFilter.genre = quizGenre ? quizGenre.value : (quizFilter.genre || "all");
+  quizFilter.difficulty = quizDifficulty ? quizDifficulty.value : (quizFilter.difficulty || "all");
+  saveQuizFilter();
 
   quizData = [];
   quizSelections = [null, null, null, null, null];
   quizAnswered = false;
   quizResult.innerHTML = "";
-
   renderQuizScore();
+  renderQuizSource();
   renderDuplicateInfo();
-  setQuizLoading("🌐 インターネットから重複の少ない問題を取得中...");
+  setQuizLoading("📝 条件に合う日本語クイズを準備しています...");
 
-  try{
-    const result = await buildUniqueInternetQuiz(5);
-    quizData = result.questions;
-    quizSource = result.mode;
-  }catch(e){
-    const currentSet = new Set();
-    const historySet = new Set(loadQuizHistory().slice(-200));
-    quizData = generateFallbackQuiz(5, currentSet, historySet);
-    appendQuizHistory(quizData.map(x => x.signature));
-    quizSource = "local";
-    duplicateStats.mode = "local";
+  const filtered = getFilteredQuizBank();
+  if(filtered.length === 0){
+    quizLoading = false;
+    quizList.innerHTML = `<div class="loadingBox">条件に合う問題が見つかりませんでした。ジャンルや難易度を変えてお試しください。</div>`;
+    return;
   }
+
+  const result = await buildUniqueJapaneseQuiz(5);
+  quizData = result.questions;
+  quizSource = result.mode;
 
   quizLoading = false;
   renderQuizSource();
@@ -1267,25 +1145,24 @@ async function generateQuiz(){
   renderQuiz();
 }
 
+/* ================= 表示 ================= */
+function toggleOriginal(index){
+  const box = document.getElementById("originalBox" + index);
+  if(!box) return;
+  box.style.display = (box.style.display === "none") ? "block" : "none";
+}
+
 function renderQuiz(){
   quizList.innerHTML = "";
-
   quizData.forEach((item, i)=>{
-    let div = document.createElement("div");
+    const div = document.createElement("div");
     div.className = "quizItem";
 
-    let meta = "";
-    if(item.category || item.difficulty){
-      meta = `<div class="quizMeta">分類: ${item.category || "-"} / 難易度: ${item.difficulty || "-"}</div>`;
-    }
+    const meta = `<div class="quizMeta"><span class="jaBadge">日本語問題</span>分類: ${item.categoryJa || '-'} / 難しさ: ${item.difficultyJa || '-'}</div>`;
 
-    let choicesHtml = item.choices.map((choice, idx)=>{
+    const choicesHtml = item.choices.map((choice, idx)=>{
       let cls = "choiceBtn";
-
-      if(quizSelections[i] === idx){
-        cls += " selected";
-      }
-
+      if(quizSelections[i] === idx) cls += " selected";
       if(quizAnswered){
         if(choice === item.correct){
           cls += " correct";
@@ -1293,20 +1170,18 @@ function renderQuiz(){
           cls += " wrong";
         }
       }
-
       return `
         <button class="${cls}" onclick="selectChoice(${i}, ${idx})" ${quizAnswered ? "disabled" : ""}>
-          ${idx+1}. ${choice}
+          ${idx + 1}. ${item.choicesJa[idx] || choice}
         </button>
       `;
     }).join("");
 
     div.innerHTML = `
       ${meta}
-      <div class="quizQuestion">Q${i+1}. ${item.q}</div>
+      <div class="quizQuestion">第${i + 1}問　${item.qJa || item.q}</div>
       ${choicesHtml}
     `;
-
     quizList.appendChild(div);
   });
 }
@@ -1324,62 +1199,60 @@ function submitQuiz(){
   let score = 0;
   let html = "";
 
-  quizData.forEach((q,i)=>{
-    let selectedIndex = quizSelections[i];
-
+  quizData.forEach((q, i)=>{
+    const selectedIndex = quizSelections[i];
     if(selectedIndex === null){
-      html += `<div class="ach">⚪ Q${i+1} 未回答　正解: ${q.correct}</div>`;
+      html += `<div class="ach">⚪ 第${i + 1}問は未回答です。正解は「${q.correctJa || q.correct}」です。</div>`;
       return;
     }
 
-    let selectedValue = q.choices[selectedIndex];
+    const selectedValue = q.choices[selectedIndex];
+    const selectedValueJa = q.choicesJa[selectedIndex] || selectedValue;
 
     if(selectedValue === q.correct){
       score++;
-      html += `<div class="ach">✅ Q${i+1} 正解</div>`;
+      html += `<div class="ach">✅ 第${i + 1}問は正解です。</div>`;
     }else{
-      html += `<div class="ach">❌ Q${i+1} 不正解　あなたの答え: ${selectedValue}　正解: ${q.correct}</div>`;
+      html += `<div class="ach">❌ 第${i + 1}問は不正解です。選んだ答えは「${selectedValueJa}」、正解は「${q.correctJa || q.correct}」です。</div>`;
     }
   });
 
   quizScore.plays++;
   quizScore.totalCorrect += score;
   quizScore.last = score;
-  if(score > quizScore.best){
-    quizScore.best = score;
-  }
+  if(score > quizScore.best) quizScore.best = score;
   saveQuizScore();
   renderQuizScore();
 
   let msg = "";
   if(score === 5){
-    msg = "🌟 全問正解！脳がかなりスッキリです！";
-  }else if(score >= 3){
-    msg = "✨ いい感じ！脳がほぐれてきています。";
+    msg = "🌟 全問正解です。とてもいい調子です。";
+  }else if(score === 4){
+    msg = "✨ 4問正解です。あと少しで満点です。";
+  }else if(score === 3){
+    msg = "😊 3問正解です。落ち着いてよくできています。";
+  }else if(score === 2){
+    msg = "💡 2問正解です。もう一度挑戦するとさらに良くなります。";
   }else{
-    msg = "💡 もう一回チャレンジでさらにスッキリ！";
+    msg = "🌱 今回は練習回です。次はきっと伸びます。";
   }
 
-  quizResult.innerHTML = `
-    <div class="quizResult">結果：${score} / 5<br>${msg}</div>
-    ${html}
-  `;
-
+  quizResult.innerHTML = `<div class="quizResult">結果：${score} / 5<br>${msg}</div>${html}`;
   renderQuiz();
   screenFX();
 }
 
 /* ================= 初期表示 ================= */
-per.value = state.per || 60;
-btn.textContent = state.running ? "■停止" : "▶開始";
-setDisplayMode(detectPreferredMode());
+applyAutoModeOnce();
+syncQuizFilterUI();
+clock.textContent = new Date().toLocaleString("ja-JP");
+btn.textContent = state.running ? "■ 停止" : "▶ 開始";
 ui();
 renderQuizScore();
 renderHomeQuizStats();
 renderQuizSource();
 renderDuplicateInfo();
-clock.textContent = new Date().toLocaleString("ja-JP");
+window.addEventListener("resize", ()=> applyDisplayMode());
 </script>
-
 </body>
 </html>
