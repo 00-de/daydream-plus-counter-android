@@ -722,8 +722,9 @@ body.easy-mode .originalText{
 
       </div>
 
-      <select id="category">
+      <select id="category" onchange="handleCategoryChange()">
         <option value="">🌈 ランダム</option>
+        <option value="jp">🇯🇵 日本クイズ</option>
         <option value="9">🧠 一般常識</option>
         <option value="17">🔬 科学</option>
         <option value="21">⚽ スポーツ</option>
@@ -879,6 +880,10 @@ function applyDisplayMode(mode){
 function changeDisplayMode(){
   const mode = displayModeSelect ? displayModeSelect.value : "normal";
   applyDisplayMode(mode);
+}
+
+function handleCategoryChange(){
+  loadQuiz();
 }
 
 /* ================= IndexedDB ================= */
@@ -1720,16 +1725,27 @@ async function loadQuiz(){
 
   try{
 
-    if(Math.random() < 0.5){
-
+    /* ① 日本クイズを明示選択した場合 */
+    if(category==="jp"){
       const quiz=japanQuiz[
         Math.floor(Math.random()*japanQuiz.length)
       ];
-
       showJapanQuiz(quiz);
       return;
     }
 
+    /* ② ランダム時のみ、日本クイズ or 世界クイズをランダム */
+    if(category===""){
+      if(Math.random() < 0.5){
+        const quiz=japanQuiz[
+          Math.floor(Math.random()*japanQuiz.length)
+        ];
+        showJapanQuiz(quiz);
+        return;
+      }
+    }
+
+    /* ③ ジャンル選択時は必ずそのジャンルの世界クイズを取得 */
     const url=category
       ? `https://opentdb.com/api.php?amount=1&type=multiple&category=${category}`
       : `https://opentdb.com/api.php?amount=1&type=multiple`;
