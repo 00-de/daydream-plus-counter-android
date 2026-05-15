@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#7c4dff">
+<meta name="theme-color" content="#2e7dff">
 <meta name="format-detection" content="telephone=no">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="application-name" content="DayDream DX+">
-<meta name="description" content="題目カウンター DayDreamプラス DX+ Android版・らくらくホン版">
-<title>題目カウンター DayDreamプラス DX+ Android版・らくらくホン版</title>
+<meta name="application-name" content="DayDream DX+ Android">
+<meta name="description" content="題目カウンター DayDreamプラス DX+ Android・らくらくホン対応版">
+<title>題目カウンター DayDreamプラス DX+ Android・らくらくホン対応版</title>
 
 <style>
 :root{
@@ -17,13 +17,13 @@
   --safe-left: env(safe-area-inset-left, 0px);
   --safe-right: env(safe-area-inset-right, 0px);
 
-  --touch-size: 56px;
-  --touch-size-easy: 76px;
-  --font-normal: 16px;
-  --font-easy: 22px;
-  --radius-mobile: 18px;
+  --touch-size: 60px;
+  --touch-size-easy: 84px;
+  --font-normal: 17px;
+  --font-easy: 24px;
+  --radius-mobile: 20px;
   --app-height: 100dvh;
-  --header-bg: rgba(255,255,255,0.55);
+  --header-bg: rgba(255,255,255,0.72);
 }
 
 html{
@@ -36,8 +36,8 @@ html{
 body{
   margin:0;
   min-height:var(--app-height);
-  font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
-  background:linear-gradient(135deg,#ffb6f9,#b5d7ff,#ffe59e);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Meiryo",sans-serif;
+  background:linear-gradient(135deg,#ffd1f5,#c8e2ff,#fff0ae);
   overflow-x:hidden;
   padding-left:var(--safe-left);
   padding-right:var(--safe-right);
@@ -45,6 +45,7 @@ body{
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
   overscroll-behavior-y:none;
+  font-size:var(--font-normal);
 }
 
 *{
@@ -57,11 +58,11 @@ input,
 textarea,
 select{
   min-height:var(--touch-size);
-  font-size:16px;
+  font-size:17px;
   touch-action:manipulation;
-  appearance:none;
   -webkit-appearance:none;
-  border-radius:12px;
+  appearance:none;
+  border-radius:14px;
 }
 
 button{
@@ -74,7 +75,7 @@ button{
 
 input,textarea,select{
   width:100%;
-  padding:10px 12px;
+  padding:12px 14px;
   margin-top:8px;
   border:1px solid #ccc;
   background:#fff;
@@ -82,7 +83,7 @@ input,textarea,select{
 }
 
 textarea{
-  min-height:120px;
+  min-height:140px;
   resize:vertical;
 }
 
@@ -91,11 +92,11 @@ textarea{
   top:0;
   padding:calc(14px + var(--safe-top)) 14px 14px;
   text-align:center;
-  font-size:20px;
+  font-size:21px;
   font-weight:bold;
   background:var(--header-bg);
-  backdrop-filter:blur(10px);
-  -webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
   z-index:999;
   line-height:1.5;
   word-break:break-word;
@@ -105,21 +106,21 @@ textarea{
 .card{
   background:white;
   margin:12px;
-  padding:14px;
-  border-radius:16px;
+  padding:16px;
+  border-radius:18px;
   box-shadow:0 6px 14px rgba(0,0,0,0.15);
   overflow:hidden;
 }
 
 .startBtn{ background:#00c853; color:white; }
 .resetBtn{ background:#ff7043; color:white; }
-.navBtn{ background:#7c4dff; color:white; }
+.navBtn{ background:#5e35b1; color:white; }
 .quizBtn{ background:#00acc1; color:white; }
 .backupBtn{ background:#3949ab; color:white; }
 .subBtn{ background:#607d8b; color:white; }
 
 .bar{
-  height:18px;
+  height:20px;
   background:#ddd;
   border-radius:999px;
   overflow:hidden;
@@ -192,8 +193,8 @@ textarea{
 }
 
 .storageInfo{
-  font-size:13px;
-  line-height:1.8;
+  font-size:14px;
+  line-height:1.9;
   color:#333;
 }
 
@@ -226,7 +227,7 @@ textarea{
 }
 
 .noticeBox{
-  background:rgba(255,255,255,0.8);
+  background:rgba(255,255,255,0.82);
   border:1px solid rgba(255,255,255,0.45);
   border-radius:14px;
   padding:12px;
@@ -236,13 +237,22 @@ textarea{
 .installSteps{
   margin:0;
   padding-left:20px;
-  line-height:1.9;
+  line-height:1.95;
 }
 
 .smallMuted{
   font-size:12px;
-  opacity:0.8;
-  line-height:1.7;
+  opacity:0.82;
+  line-height:1.8;
+}
+
+.androidNotice{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:#eef6ff;
+  line-height:1.8;
+  font-size:14px;
 }
 
 /* ================= クイズDX+ ================= */
@@ -323,7 +333,7 @@ textarea{
   background:white;
   color:#222;
   font-weight:bold;
-  min-height:60px;
+  min-height:64px;
 }
 
 .choice:hover{
@@ -363,7 +373,7 @@ textarea{
   cursor:pointer;
   font-weight:bold;
   margin-top:15px;
-  min-height:60px;
+  min-height:64px;
 }
 
 .quizDxNextBtn{
@@ -425,21 +435,29 @@ textarea{
 .android-device input,
 .android-device textarea,
 .android-device select{
-  font-size:16px !important;
+  font-size:17px !important;
 }
 
-#main .card button,
-#prayerPage .card button{
-  min-height:56px;
+.android-device #main .card button,
+.android-device #prayerPage .card button{
+  min-height:60px;
+}
+
+.raku-device .card{
+  border-radius:22px;
+}
+
+.raku-device .header{
+  font-size:22px;
 }
 
 @media (max-width: 768px){
   body{
-    font-size:16px;
+    font-size:17px;
   }
 
   .header{
-    font-size:18px;
+    font-size:19px;
     padding:calc(16px + var(--safe-top)) 12px 16px;
   }
 
@@ -454,7 +472,7 @@ textarea{
     display:block;
     width:100%;
     margin:6px 0;
-    font-size:16px;
+    font-size:17px;
   }
 
   .quizDxContainer{
@@ -503,23 +521,23 @@ textarea{
 
   .storageInfo{
     font-size:14px;
-    line-height:1.9;
+    line-height:1.95;
   }
 }
 
-/* らくらくホン・見やすさ重視 */
+/* らくらく大きめ表示 */
 body.easy-mode{
   font-size:var(--font-easy);
 }
 
 body.easy-mode .header{
-  font-size:25px;
+  font-size:26px;
   padding:calc(18px + var(--safe-top)) 14px 18px;
 }
 
 body.easy-mode .card{
-  padding:18px;
-  border-radius:22px;
+  padding:20px;
+  border-radius:24px;
 }
 
 body.easy-mode button,
@@ -527,7 +545,7 @@ body.easy-mode input,
 body.easy-mode textarea,
 body.easy-mode select{
   min-height:var(--touch-size-easy);
-  font-size:22px;
+  font-size:24px;
 }
 
 body.easy-mode #main .card button,
@@ -538,34 +556,34 @@ body.easy-mode #prayerPage .card button{
 }
 
 body.easy-mode .quizDxTitle{
-  font-size:42px;
+  font-size:44px;
 }
 
 body.easy-mode .quizDxSub{
-  font-size:20px;
+  font-size:21px;
 }
 
 body.easy-mode .quizCurrentGenre{
-  font-size:19px;
-  line-height:1.9;
+  font-size:20px;
+  line-height:1.95;
 }
 
 body.easy-mode .quizDxQuestion{
-  font-size:32px;
-  line-height:1.75;
+  font-size:34px;
+  line-height:1.8;
 }
 
 body.easy-mode .choice{
-  font-size:24px;
-  min-height:82px;
+  font-size:25px;
+  min-height:84px;
   padding:18px 16px;
 }
 
 body.easy-mode .quizDxNextBtn,
 body.easy-mode .quizDxBackBtn{
   width:100%;
-  min-height:82px;
-  font-size:24px;
+  min-height:84px;
+  font-size:25px;
   margin:10px 0 0;
 }
 
@@ -574,17 +592,17 @@ body.easy-mode .quizDxScoreBox{
 }
 
 body.easy-mode .quizDxScoreItem{
-  font-size:22px;
+  font-size:23px;
 }
 
 body.easy-mode .storageInfo{
-  font-size:18px;
-  line-height:2;
+  font-size:19px;
+  line-height:2.05;
 }
 
 body.easy-mode .originalText{
   font-size:16px;
-  line-height:1.8;
+  line-height:1.9;
 }
 
 body.easy-mode .badge{
@@ -592,9 +610,14 @@ body.easy-mode .badge{
   padding:10px 14px;
 }
 
+body.easy-mode .androidNotice{
+  font-size:19px;
+  line-height:2;
+}
+
 @media (max-width: 420px){
   .header{
-    font-size:17px;
+    font-size:18px;
   }
 
   .quizDxTitle{
@@ -630,7 +653,7 @@ body.easy-mode .badge{
 <div id="space" class="space"></div>
 
 <div class="header">
-🤖 題目カウンター DayDreamプラス DX+ Android版・らくらくホン版
+🤖 題目カウンター DayDreamプラス DX+ Android・らくらくホン対応版
 </div>
 
 <div id="main">
@@ -645,7 +668,7 @@ body.easy-mode .badge{
 
     <div class="badgeRow">
       <div id="networkBadge" class="badge online">🟢 オンライン</div>
-      <div id="installBadge" class="badge">📲 Androidホーム追加対応</div>
+      <div id="installBadge" class="badge">🤖 Androidホーム追加対応</div>
       <div id="categoryBadge" class="badge">🧠 ジャンル: ランダム</div>
     </div>
   </div>
@@ -682,38 +705,28 @@ body.easy-mode .badge{
     </select>
 
     <div class="storageInfo">
-      ・Androidスマホは「Android標準」で使えます<br>
-      ・見やすさ優先なら「らくらくホン大きめ表示」<br>
+      ・Androidスマホは「Android標準」でそのまま使えます<br>
+      ・見やすさ優先なら「らくらくホン大きめ表示」がおすすめです<br>
       ・設定は端末内に保存されます
     </div>
   </div>
 
   <div class="card">
-    <h3>📲 Androidでホーム画面に追加</h3>
+    <h3>📲 Android・らくらくホンでホーム画面に追加</h3>
     <div class="noticeBox">
       <ol class="installSteps">
-        <li>Chromeでこのページを開く</li>
-        <li>右上の「︙」を押す</li>
-        <li>「ホーム画面に追加」または「インストール」を選ぶ</li>
-        <li>追加するとアプリ風に起動しやすくなります</li>
+        <li>Chrome などでこのページを開く</li>
+        <li>画面右上の「︙」メニューを押す</li>
+        <li>「ホーム画面に追加」または「アプリをインストール」を選ぶ</li>
+        <li>追加するとアプリ風に開きやすくなります</li>
       </ol>
-      <div class="smallMuted">
-        ※ AndroidではChromeから追加するのが安定です
+      <div class="androidNotice">
+        ・らくらくホン系の小さめ画面では「らくらくホン大きめ表示」推奨<br>
+        ・機種によってはメニュー名が少し違う場合があります
       </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h3>💾 記録保護</h3>
-
-    <button class="backupBtn" onclick="exportBackup()">バックアップ保存</button>
-    <button class="backupBtn" onclick="triggerImportBackup()">バックアップ復元</button>
-    <input id="backupFile" type="file" accept=".json,application/json" style="display:none" onchange="importBackup(event)">
-
-    <div class="storageInfo">
-      ・記録は localStorage と IndexedDB に二重保存<br>
-      ・同じブラウザ / 同じURL系統なら残りやすいです<br>
-      ・端末変更やブラウザ整理に備えて、たまにバックアップ保存がおすすめです
+      <div class="smallMuted">
+        ※ Androidでは Chrome 系ブラウザから追加するのが比較的安定です
+      </div>
     </div>
   </div>
 
@@ -723,6 +736,9 @@ body.easy-mode .badge{
   </div>
 
 </div>
+
+<!-- 非表示: 互換維持用 -->
+<input id="backupFile" type="file" accept=".json,application/json" style="display:none" onchange="importBackup(event)">
 
 <!-- 御祈念 -->
 <div id="prayerPage" style="display:none">
@@ -873,6 +889,7 @@ const categorySelect=document.getElementById("category");
 const quizCurrentGenre=document.getElementById("quizCurrentGenre");
 const networkBadge=document.getElementById("networkBadge");
 const categoryBadge=document.getElementById("categoryBadge");
+const installBadge=document.getElementById("installBadge");
 
 /* ================= 状態 ================= */
 
@@ -1132,10 +1149,34 @@ function handleCategoryChange(){
 }
 
 function detectAndroidDevice(){
-  const ua = navigator.userAgent || "";
+  const ua = window.navigator.userAgent || "";
   const isAndroid = /Android/i.test(ua);
+  const isSmallTouch = window.matchMedia("(pointer: coarse)").matches && window.innerWidth <= 480;
+  const isRakuLikely = isAndroid && isSmallTouch;
+
   document.documentElement.classList.toggle("android-device", isAndroid);
   document.body.classList.toggle("android-device", isAndroid);
+
+  document.documentElement.classList.toggle("raku-device", isRakuLikely);
+  document.body.classList.toggle("raku-device", isRakuLikely);
+
+  if(installBadge){
+    installBadge.textContent = isAndroid ? "🤖 Androidホーム追加対応" : "📲 ホーム画面追加対応";
+  }
+}
+
+function suggestDefaultDisplayMode(){
+  const savedMode = localStorage.getItem(VIEW_MODE_KEY);
+  if(savedMode){
+    applyDisplayMode(savedMode);
+    return;
+  }
+
+  const easyRecommended =
+    document.body.classList.contains("raku-device") ||
+    (document.body.classList.contains("android-device") && window.innerWidth <= 480);
+
+  applyDisplayMode(easyRecommended ? "easy" : "normal");
 }
 
 function setViewportHeight(){
@@ -1160,11 +1201,11 @@ function updateNetworkUI(){
 function createManifestInline(){
   try{
     const manifest={
-      name:"DayDreamプラス DX+",
+      name:"DayDreamプラス DX+ Android",
       short_name:"DayDream DX+",
       display:"standalone",
       background_color:"#ffffff",
-      theme_color:"#7c4dff",
+      theme_color:"#2e7dff",
       start_url:".",
       icons:[]
     };
@@ -1752,7 +1793,7 @@ function delPrayer(i){
   renderPrayer();
 }
 
-/* ================= バックアップ ================= */
+/* ================= バックアップ互換 ================= */
 
 function exportBackup(){
 
@@ -1797,7 +1838,10 @@ function exportBackup(){
 }
 
 function triggerImportBackup(){
-  document.getElementById("backupFile").click();
+  const backupInput=document.getElementById("backupFile");
+  if(backupInput){
+    backupInput.click();
+  }
 }
 
 async function importBackup(event){
@@ -1838,7 +1882,7 @@ async function importBackup(event){
     saveQuizData();
 
     restoreSelectedCategory();
-    applyDisplayMode(localStorage.getItem(VIEW_MODE_KEY) || "normal");
+    suggestDefaultDisplayMode();
 
     renderAchievements();
     renderPrayer();
@@ -2130,6 +2174,10 @@ function checkAnswer(button,choice){
       quizBest=combo;
     }
 
+    if(navigator.vibrate){
+      navigator.vibrate(35);
+    }
+
     if(resultEl){
       resultEl.innerText="🎉 正解！！";
     }
@@ -2155,6 +2203,10 @@ function checkAnswer(button,choice){
 
     button.classList.add("wrong");
     combo=0;
+
+    if(navigator.vibrate){
+      navigator.vibrate([40,40,40]);
+    }
 
     if(resultEl){
       resultEl.innerText="❌ 不正解";
@@ -2185,10 +2237,22 @@ function generateQuiz(){
 per.addEventListener("change",updatePerSetting);
 goal.addEventListener("change",updateGoalSetting);
 
-window.addEventListener("resize",setViewportHeight);
-window.addEventListener("orientationchange",setViewportHeight);
+window.addEventListener("resize",()=>{
+  setViewportHeight();
+  detectAndroidDevice();
+  suggestDefaultDisplayMode();
+});
+
+window.addEventListener("orientationchange",()=>{
+  setViewportHeight();
+  detectAndroidDevice();
+  suggestDefaultDisplayMode();
+});
+
 window.addEventListener("pageshow",()=>{
   setViewportHeight();
+  detectAndroidDevice();
+  suggestDefaultDisplayMode();
   updateNetworkUI();
   ui();
 });
@@ -2220,6 +2284,8 @@ document.addEventListener("visibilitychange",()=>{
     saveSelectedCategory();
   }else{
     setViewportHeight();
+    detectAndroidDevice();
+    suggestDefaultDisplayMode();
     updateNetworkUI();
     ui();
   }
@@ -2235,9 +2301,7 @@ async function init(){
 
   await loadAllSavedData();
 
-  const savedMode = localStorage.getItem(VIEW_MODE_KEY) || "normal";
-  applyDisplayMode(savedMode);
-
+  suggestDefaultDisplayMode();
   restoreSelectedCategory();
   updateQuizSourceLabel("待機中");
 
